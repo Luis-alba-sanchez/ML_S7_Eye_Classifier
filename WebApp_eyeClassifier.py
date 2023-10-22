@@ -53,6 +53,30 @@ def predict():
 
     classification = '%s (%.2f%%)' % (class_name, confidence_score*100)
 
+    if class_name == 'Risk':
+        # ============================
+        # ===== the second model =====
+        # ============================
+        # load classifier
+        model2 = load_model('./model_all_var/keras_model_all_var.h5')
+        # load the classes
+        with open('./model_all_var/labels_all_var.txt', 'r') as f:
+            class_names2 = [a[:-1].split(' ')[1] for a in f.readlines()]
+            f.close()
+        # make prediction
+        prediction2 = model2.predict(data)
+        # get prediction
+        index2 = np.argmax(prediction2)
+        # get prediction's class
+        class_name2 = class_names2[index2]
+        confidence_score2 = prediction2[0][index2]
+
+        classification2 = '%s (%.2f%%)' % (class_name2, confidence_score2*100)
+
+        print(classification2)
+
+        return render_template('index.html', prediction=classification, prediction2=classification2)
+
     return render_template('index.html', prediction=classification)
 
 if __name__ == '__main__':
