@@ -22,7 +22,7 @@ def predict():
     image = Image.open(image_path).convert('RGB')
     
     # ==========================
-    # ===== image tretment =====
+    # ===== image treatment =====
     # ==========================
     # convert image to (224, 224)
     image = ImageOps.fit(image, (224, 224), Image.Resampling.LANCZOS)
