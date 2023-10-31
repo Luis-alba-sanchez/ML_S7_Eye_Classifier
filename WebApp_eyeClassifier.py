@@ -80,5 +80,5 @@ def predict():
     return render_template('index.html', prediction=classification)
 
 if __name__ == '__main__':
-    logging.info("App started")
+    # logging.info("App started")
     app.run(host="0.0.0.0", port=8000)

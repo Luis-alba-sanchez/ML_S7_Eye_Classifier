@@ -1,28 +1,189 @@
-<!Doctype html>
-<html lang="fr">
+<!DOCTYPE html>
+<html lang="en">
     <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
         <title>Eye Classifier</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" 
-        rel="stylesheet" 
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
-        crossorigin="anonymous">
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" /> 
     </head>
 
-    <body>
-        <h1 class="text-center">Image Classifier</h1>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#page-top">Start Classifier</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
 
-        <form class="p-3 text-center" action='/', method="post" enctype="multipart/form-data">
-            <input class="form-control" type="file" name="imagefile" >
-            <input class="btn btn-primary mt-3"type="submit" value="Predict Image" >
-        </form>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#about">The Project</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#projects">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                <div class="d-flex justify-content-center">
+                    <div class="text-center">
+                        <h1 class="mx-auto my-0 text-uppercase">DeasEye</h1>
+                        <h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, one page eye classifier by a group of young student from EFREI.</h2>
+                        <form class="p-3 text-center" action='/', method="post" enctype="multipart/form-data">
+                            <input class="form-control" type="file" name="imagefile" id="imageUpload">
+                            <input class="btn btn-primary mt-3"type="submit" value="Predict Image" >
 
-        {% if prediction %}
-            <p class="text-center"> Image is a {{prediction}}</p>
-        {% endif %}
-            
-        {% if prediction2 %}
-            <p class="text-center"> Image is mort precisly a {{prediction2}}</p>
-        {% endif %}
+                            <div class="unPeuDePlace" alt="azer">
+                                <div class="card py-4 h-100" >
+                                    <div class="card-body text-center" >
+                                        {% if prediction %}
+                                            <p class="text-center"> We evaluate that your rethine is {{prediction}}</p>
+                                        {% endif %}
 
+                                        {% if prediction2 %}
+                                            <p class="text-center"> More precisly, we evalate : {{prediction2}}</p>
+                                        {% endif %}
+
+                                        {% if prediction %}
+                                            <img id="imageDisplay" alt="nous attendons votre image" width="225px" />
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- TheProject-->
+        <section class="about-section text-center" id="about">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2 class="text-white mb-4">The begining of a solution better than us</h2>
+                        <p class="text-white-50">
+                            <br />
+                            DeasEye was born out of numerous consultations with healthcare professionals, revealing a major problem in the medical field: <br />
+                            <br />
+                            The late diagnosis of eye diseases, particularly eye cancers. <br />
+                            Our aim was to fill this gap by providing an effective solution. <br />
+                            <br />
+                            <br />
+                            Deaseye now offers a clear and fast way for individuals to send x-rays of their retina for early diagnosis of eye conditions, 
+                            including accurate disease identification. <br />
+                            <br />
+                            Our platform thus aims to revolutionize the early detection of eye problems, improving ophthalmic healthcare.
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- AboutUs-->
+        <section class="projects-section bg-light" id="projects">
+            <div class="container px-4 px-lg-5">
+                <!-- Featured Project Row-->
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="{{ url_for('static', filename='img/lequipe.jpeg') }}" alt="..." /></div>
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>Don't have a good team have a great team</h4>
+                            <p class="text-black-50 mb-0">
+                                We are Luis ALBA SHANCHEZ, Gabin KALBUSH, Stephanie LI, 3 students from EFREI Paris, a renowned computer engineering school in Paris. 
+                                Currently, we are delving deep into data science studies.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Signup-->
+        <section class="signup-section" id="signup">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5">
+                    <div class="col-md-10 col-lg-8 mx-auto text-center">
+                        <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+                        <h2 class="text-white mb-5">New updates soon !</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact-->
+        <section class="contact-section bg-black">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+                                <h4 class="text-uppercase m-0">Location</h4>
+                                <hr class="my-4 mx-auto" />
+                                <div class="small text-black-50"><a href="https://maps.app.goo.gl/oHz2CZmJTRmjS84P7">EFREI-Paris, Panthéon-Assas</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-envelope text-primary mb-2"></i>
+                                <h4 class="text-uppercase m-0">LinkedIn</h4>
+                                <hr class="my-4 mx-auto" />
+                                <div class="small text-black-50"><a href="https://www.linkedin.com/in/luis-alexandre-alba-sanchez/">in/luis-alexandre-alba-sanchez</a></div>
+                                <div class="small text-black-50"><a href="https://www.linkedin.com/in/stephanie-li-5868031b6/">in/stephanie-li</a></div>
+                                <div class="small text-black-50"><a href="https://www.linkedin.com/in/gabin-kalbusch/">in/gabin-kalbusch</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-mobile-alt text-primary mb-2"></i>
+                                <h4 class="text-uppercase m-0">GitHub</h4>
+                                <hr class="my-4 mx-auto" />
+                                <div class="small text-black-50"><a href="https://github.com/Luis-alba-sanchez">GitHub/Luis-alba-sanchez</a></div>
+                                <div class="small text-black-50"><a href="https://github.com/Akaihidenka">GitHub/Akaihidenka</a></div>
+                                <div class="small text-black-50"><a href="https://github.com/GabinKal">GitHub/GabinKal</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="social d-flex justify-content-center">
+                    <a class="mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                    <a class="mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                    <a class="mx-2" href="#!"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2023</div></footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>
