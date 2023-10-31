@@ -47,10 +47,6 @@ The application will start, and you can access it by opening a web browser and n
 - Gabin Von Der Kalbusch
 - Luis Aba Sanchez
 
-## License
-
-This project is licensed under the MIT License. You can find more details in the `LICENSE` file.
-
 ## Acknowledgments
 
 We would like to thank the EFREI Paris machine learning community for their support and guidance.
